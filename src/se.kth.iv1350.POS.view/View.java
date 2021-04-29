@@ -1,5 +1,7 @@
 package src.se.kth.iv1350.POS.view;
 
+import src.se.kth.iv1350.POS.DTO.PaymentDTO;
+import src.se.kth.iv1350.POS.DTO.SaleInfoDTO;
 import src.se.kth.iv1350.POS.controller.Controller;
 
 /**
@@ -8,6 +10,9 @@ import src.se.kth.iv1350.POS.controller.Controller;
  */
 public class View {
   private Controller contr;
+  private String identifier;
+  private int amount;
+  private String currency;
 
   /**
    * Creates a new instance, that uses the specified controller for all calls to other layers.
@@ -24,6 +29,8 @@ public class View {
   public void runFakeExecution() {
 	contr.startSale();
 	System.out.println("A new sale has been started.");
+	SaleInfoDTO saleInformation = contr.enterItem(identifier);
+	PaymentDTO change = contr.pay(amount, currency);
 
   }
 

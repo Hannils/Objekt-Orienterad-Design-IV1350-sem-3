@@ -1,10 +1,7 @@
 package src.se.kth.iv1350.POS.view;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import src.se.kth.iv1350.POS.controller.Controller;
-import src.se.kth.iv1350.POS.integration.DCHandler;
 import src.se.kth.iv1350.POS.integration.EASHandler;
 import src.se.kth.iv1350.POS.integration.EISHandler;
 import src.se.kth.iv1350.POS.integration.Printer;
@@ -18,15 +15,19 @@ class ViewTest {
   private View instanceToTest;
   private EASHandler eas;
   private EISHandler eis;
-  private DCHandler dc;
   private Printer printer;
   private ByteArrayOutputStream printoutBuffer;
   private PrintStream originalSysOut;
 
+
   @BeforeEach
   public void setUp() {
-	Controller contr = new Controller(eis, eas, dc, printer);
+    eis = new EISHandler();
+    eas = new EASHandler();
+    printer = new Printer();
+	Controller contr = new Controller(eis, eas, printer);
 	instanceToTest = new View(contr);
+
 
 	printoutBuffer = new ByteArrayOutputStream();
 	PrintStream inMemSysOut = new PrintStream(printoutBuffer);

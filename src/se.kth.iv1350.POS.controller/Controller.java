@@ -1,9 +1,12 @@
 package src.se.kth.iv1350.POS.controller;
 
-import src.se.kth.iv1350.POS.integration.DCHandler;
+import src.se.kth.iv1350.POS.DTO.ItemDTO;
+import src.se.kth.iv1350.POS.DTO.PaymentDTO;
+import src.se.kth.iv1350.POS.DTO.SaleInfoDTO;
 import src.se.kth.iv1350.POS.integration.EASHandler;
 import src.se.kth.iv1350.POS.integration.EISHandler;
 import src.se.kth.iv1350.POS.integration.Printer;
+import src.se.kth.iv1350.POS.model.Receipt;
 import src.se.kth.iv1350.POS.model.Sale;
 
 /**
@@ -12,21 +15,19 @@ import src.se.kth.iv1350.POS.model.Sale;
 public class Controller {
   private EISHandler eis;
   private EASHandler eas;
-  private DCHandler dc;
   private Printer printer;
   private Sale sale;
+
 
   /**
    * The applications only controller which takes several parameters.
    * @param eas This is the external accounting system parameter.
    * @param eis This is the external inventory system parameter.
-   * @param dc This is the discount handler parameter.
    * @param printer This is the printer parameter.
    */
-  public Controller(EISHandler eis, EASHandler eas, DCHandler dc, Printer printer){
+  public Controller(EISHandler eis, EASHandler eas, Printer printer){
     this.eis = eis;
 	this.eas = eas;
-    this.dc = dc;
     this.printer = printer;
 
     //For testing purposes
@@ -40,5 +41,28 @@ public class Controller {
   public void startSale() {
 	sale = new Sale();
   }
+
+  /**
+   * This is the function which will enter an item to the current sale. It takes in one parameter.
+   * @param identifier This is the parameter which identifies the item entered.
+   * @return
+   */
+  public SaleInfoDTO enterItem(String identifier) {
+    ItemDTO itemDTO = eis.findItem(identifier);
+    SaleInfoDTO saleInformation = sale.addItem(itemDTO);
+    return saleInformation;
+  }
+
+  public PaymentDTO pay(int amount, String currency) {
+    PaymentDTO payment = new PaymentDTO(amount, currency);
+
+    Receipt receipt = sale.complete(payment, sale);
+    printer.printReceipt(receipt);
+    eas.registerPayment(payment, sale);
+    eis.updateInventory(sale);
+    return payment;
+  }
+
+
 
 }

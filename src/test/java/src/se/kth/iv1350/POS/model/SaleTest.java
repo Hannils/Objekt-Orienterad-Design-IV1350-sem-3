@@ -1,19 +1,24 @@
-package src.se.kth.iv1350.POS.controller;
+package src.se.kth.iv1350.POS.model;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import src.se.kth.iv1350.POS.DTO.ItemDTO;
+import src.se.kth.iv1350.POS.controller.Controller;
 import src.se.kth.iv1350.POS.integration.EASHandler;
 import src.se.kth.iv1350.POS.integration.EISHandler;
 import src.se.kth.iv1350.POS.integration.Printer;
+import src.se.kth.iv1350.POS.model.Sale;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ControllerTest {
-  private Controller instanceToTest;
+class SaleTest {
+  private Sale instanceToTest;
+  private ItemDTO itemDTO;
   private EASHandler eas;
   private EISHandler eis;
   private Printer printer;
@@ -22,13 +27,13 @@ class ControllerTest {
 
   @BeforeEach
   public void setUp() {
+	Controller contr = new Controller(eis, eas, printer);
+	instanceToTest = new Sale();
+	itemDTO = new ItemDTO("Ris", 0.25, 15, "Basmati");
 	printoutBuffer = new ByteArrayOutputStream();
 	PrintStream inMemSysOut = new PrintStream(printoutBuffer);
 	originalSysOut = System.out;
 	System.setOut(inMemSysOut);
-	this.eas = eas;
-	this.eis = eis;
-	instanceToTest = new Controller(eis, eas, printer);
   }
 
   @AfterEach
@@ -38,17 +43,13 @@ class ControllerTest {
 	System.setOut(originalSysOut);
   }
   @Test
-  public void testControllerHasStarted() {
-    String printOut = this.printoutBuffer.toString();
-    String expectedOutput = "successfully";
-	assertTrue(printOut.contains(expectedOutput), "Controller did not start correctly.");
+  public void testIfItemAddedToSale() {
+
+	instanceToTest.addItem(itemDTO);
+	String printout = printoutBuffer.toString();
+	String expectedOutput = "added";
+	assertTrue(printout.contains(expectedOutput), "Sale did not add item correctly.");
+
   }
 
-  @Test
-  public void testStartSaleHasStarted() {
-    instanceToTest.startSale();
-	String printOut = this.printoutBuffer.toString();
-	String expectedOutput = "started";
-	assertTrue(printOut.contains(expectedOutput), "Sale did not start correctly.");
-  }
 }
