@@ -53,11 +53,17 @@ public class Controller {
     return saleInformation;
   }
 
+  /**
+   * This is the function in which payment will be recieved and sale will be completed.
+   * @param amount This is the parameter which specifies the amount of currency taken in.
+   * @param currency This is the parameter which specifies which currency has been accepted.
+   * @return
+   */
   public PaymentDTO pay(int amount, String currency) {
     PaymentDTO payment = new PaymentDTO(amount, currency);
 
     Receipt receipt = sale.complete(payment, sale);
-    printer.printReceipt(receipt);
+    printer.printReceipt(receipt, sale);
     eas.registerPayment(payment, sale);
     eis.updateInventory(sale);
     return payment;

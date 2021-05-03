@@ -29,8 +29,11 @@ public class View {
   public void runFakeExecution() {
 	contr.startSale();
 	System.out.println("A new sale has been started.");
-	SaleInfoDTO saleInformation = contr.enterItem(identifier);
-	PaymentDTO change = contr.pay(amount, currency);
+	SaleInfoDTO saleInformation = contr.enterItem("first");
+      saleInformation = contr.enterItem("third");
+      saleInformation = contr.enterItem("first");
+	PaymentDTO payment = contr.pay(amount, currency);
+	System.out.println("Change: " + payment);
 
   }
 

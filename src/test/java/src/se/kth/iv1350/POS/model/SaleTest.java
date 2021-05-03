@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import src.se.kth.iv1350.POS.DTO.ItemDTO;
+import src.se.kth.iv1350.POS.DTO.SaleInfoDTO;
 import src.se.kth.iv1350.POS.controller.Controller;
 import src.se.kth.iv1350.POS.integration.EASHandler;
 import src.se.kth.iv1350.POS.integration.EISHandler;
@@ -44,12 +45,12 @@ class SaleTest {
   }
   @Test
   public void testIfItemAddedToSale() {
-
-	instanceToTest.addItem(itemDTO);
-	String printout = printoutBuffer.toString();
-	String expectedOutput = "added";
+	SaleInfoDTO saleInformation = instanceToTest.addItem(itemDTO);
+	String printout = saleInformation.getCurrentItemName();
+	String expectedOutput = "Basmati";
 	assertTrue(printout.contains(expectedOutput), "Sale did not add item correctly.");
-
   }
+
+
 
 }

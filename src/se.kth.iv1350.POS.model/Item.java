@@ -22,9 +22,9 @@ public class Item {
   public Item(ItemDTO itemDTO, int quantity){
     this.name = itemDTO.getName();
     this.VAT = itemDTO.getVAT();
-    this.price = itemDTO.getPrice();
     this.description = itemDTO.getDescription();
     this.quantity = quantity;
+    this.price = itemDTO.getPrice() * this.quantity;
     this.weight = weight;
   }
 
@@ -69,5 +69,15 @@ public class Item {
    */
   public int getQuantity() {
     return this.quantity;
+  }
+
+  /**
+   * This function sets the way the object item is to be printed.
+   * @return
+   */
+  @Override
+  public String toString() {
+    return "("+this.quantity+", "+this.name +", "+ this.getDescription()+
+            ", PRIS:"+this.getPrice()+"kr, MOMS:"+ this.getVAT()*this.getPrice() +"kr)\n";
   }
 }

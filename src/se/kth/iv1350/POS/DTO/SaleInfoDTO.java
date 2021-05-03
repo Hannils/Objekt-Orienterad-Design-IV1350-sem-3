@@ -16,7 +16,7 @@ public class SaleInfoDTO {
    */
   public SaleInfoDTO(ItemDTO item, double runningTotal) {
     this.currentItemDescription = item.getDescription();
-    this.currentItemPrice = item.getPrice();
+    this.currentItemPrice = item.getPrice() + item.getPrice() * item.getVAT();
     this.currentItemName = item.getName();
     this.runningTotal = runningTotal;
   }

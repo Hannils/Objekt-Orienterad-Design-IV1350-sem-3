@@ -4,6 +4,7 @@ import src.se.kth.iv1350.POS.DTO.ItemDTO;
 import src.se.kth.iv1350.POS.DTO.PaymentDTO;
 import src.se.kth.iv1350.POS.DTO.SaleInfoDTO;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -12,7 +13,9 @@ import java.util.ArrayList;
  */
 public class Sale {
   private LocalTime saleTime;
+  private LocalDate date;
   private ArrayList<Item> items = new ArrayList<Item>();
+  private Item createdItem;
   private double totalPrice;
   private double totalVAT;
   private double runningTotal = totalPrice + totalVAT;
@@ -21,7 +24,10 @@ public class Sale {
    * Creates a new instance and saves the time for the sale.
    */
   public Sale() {
-	saleTime = LocalTime.now();
+	this.saleTime = LocalTime.now();
+	this.date = LocalDate.now();
+	this.totalPrice = totalPrice;
+	this.totalVAT = totalVAT;
   }
 
   /**
@@ -32,20 +38,33 @@ public class Sale {
    */
   public SaleInfoDTO addItem(ItemDTO itemDTO) {
     Item createdItem = new Item(itemDTO, 1);
+    for(int i = 0; i < items.size(); i++){
+      if(createdItem.getName().equals(items.get(i).getName())){
+        createdItem = new Item(itemDTO, items.get(i).getQuantity() + 1);
+        items.remove(i);
+      }
+    }
     items.add(createdItem);
-    calculateRunningTotal(createdItem);
+    calculatePrices();
 	SaleInfoDTO saleInformation = new SaleInfoDTO(itemDTO, runningTotal);
-	System.out.println("Item has been added to sale");
 	return saleInformation;
   }
 
+
   /**
    * This function calculates the running total price based on the price of the item scanned and the VAT of that item.
-   * @param createdItem
    */
-  public void calculateRunningTotal(Item createdItem) {
-	totalPrice += createdItem.getPrice();
-	totalVAT += (createdItem.getVAT() * createdItem.getPrice());
+  public void calculatePrices() {
+    this.totalPrice = 0;
+    this.totalVAT = 0;
+    for(Item item : items){
+      this.totalPrice += item.getPrice();
+      this.totalVAT += (item.getVAT() * item.getPrice());
+    }
+
+
+    this.runningTotal = this.totalPrice + this.totalVAT;
+
   }
 
   /**
@@ -63,8 +82,16 @@ public class Sale {
    * This is the function which return the time of the sale.
    * @return
    */
-  public LocalTime getSaleTime() {
-    return this.saleTime;
+  public String getSaleTime() {
+    return this.saleTime.getHour()+":"+this.saleTime.getMinute()+":"+this.saleTime.getSecond();
+  }
+
+  /**
+   * This function returns the date of the sale.
+   * @return
+   */
+  public LocalDate getDate() {
+    return this.date;
   }
 
   /**

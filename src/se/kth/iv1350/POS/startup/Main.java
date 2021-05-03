@@ -10,6 +10,7 @@ import src.se.kth.iv1350.POS.view.View;
  * This is the main class.
  */
 public class Main {
+
   /**
    * This is the main function.
    * @param args Does not take in any args.

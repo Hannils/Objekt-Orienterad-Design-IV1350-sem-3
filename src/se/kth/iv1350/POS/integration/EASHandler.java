@@ -8,6 +8,6 @@ import src.se.kth.iv1350.POS.model.Sale;
  */
 public class EASHandler {
 	public void registerPayment(PaymentDTO payment, Sale sale) {
-		System.out.println("Payment has been registered");
+		System.out.println("Payment of " + payment.toString() + " has been registered");
 	}
 }

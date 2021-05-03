@@ -10,6 +10,11 @@ public class Receipt {
   private PaymentDTO payment;
   private String storeInformation = "ICA KTH KÖKSBANKEN, RUNDA-SLÄNGEN 69 420C4";
 
+  /**
+   * This is the constructor for the class receipt.
+   * @param sale This is the parameter which contains information about the current sale.
+   * @param payment This is the parameter which contains information about the payment.
+   */
   public Receipt(Sale sale, PaymentDTO payment) {
     this.sale = sale;
     this.payment = payment;
@@ -25,7 +30,7 @@ public class Receipt {
   }
 
   /**
-   * This is the function which returns the payement from the receipt as an PaymentDTO.
+   * This is the function which returns the payment from the receipt as an PaymentDTO.
    * @return
    */
   public PaymentDTO getPayment() {
