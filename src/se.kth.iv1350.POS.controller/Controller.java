@@ -18,7 +18,6 @@ public class Controller {
   private Printer printer;
   private Sale sale;
 
-
   /**
    * The applications only controller which takes several parameters.
    * @param eas This is the external accounting system parameter.
@@ -33,7 +32,6 @@ public class Controller {
     //For testing purposes
     System.out.println("Controller started successfully");
   }
-
 
   /**
    * Starts a new sale. This method must be called before doing anything else during a sale.
@@ -50,6 +48,7 @@ public class Controller {
   public SaleInfoDTO enterItem(String identifier) {
     ItemDTO itemDTO = eis.findItem(identifier);
     SaleInfoDTO saleInformation = sale.addItem(itemDTO);
+    System.out.println("Item " + identifier + " has been added");
     return saleInformation;
   }
 
@@ -63,9 +62,9 @@ public class Controller {
     PaymentDTO payment = new PaymentDTO(amount, currency);
 
     Receipt receipt = sale.complete(payment, sale);
-    printer.printReceipt(receipt, sale);
     eas.registerPayment(payment, sale);
     eis.updateInventory(sale);
+    printer.printReceipt(receipt, sale);
     return payment;
   }
 

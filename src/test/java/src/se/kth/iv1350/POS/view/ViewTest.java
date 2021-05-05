@@ -5,10 +5,8 @@ import src.se.kth.iv1350.POS.controller.Controller;
 import src.se.kth.iv1350.POS.integration.EASHandler;
 import src.se.kth.iv1350.POS.integration.EISHandler;
 import src.se.kth.iv1350.POS.integration.Printer;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class ViewTest {
@@ -19,36 +17,33 @@ class ViewTest {
   private ByteArrayOutputStream printoutBuffer;
   private PrintStream originalSysOut;
 
-
   @BeforeEach
   public void setUp() {
-    eis = new EISHandler();
-    eas = new EASHandler();
-    printer = new Printer();
-	Controller contr = new Controller(eis, eas, printer);
-	instanceToTest = new View(contr);
-
-
 	printoutBuffer = new ByteArrayOutputStream();
 	PrintStream inMemSysOut = new PrintStream(printoutBuffer);
 	originalSysOut = System.out;
 	System.setOut(inMemSysOut);
+	eis = new EISHandler();
+	eas = new EASHandler();
+	printer = new Printer();
+	Controller contr = new Controller(eis, eas, printer);
+	instanceToTest = new View(contr);
   }
-
   @AfterEach
   public void tearDown() {
 	instanceToTest = null;
 	printoutBuffer = null;
 	System.setOut(originalSysOut);
+      eis = null;
+      eas = null;
+      printer = null;
+      Controller contr = null;
+      instanceToTest = null;
   }
-
   @Test
   public void testRunFakeExecution() {
 	instanceToTest.runFakeExecution();
 	String printout = printoutBuffer.toString();
-	String expectedOutput = "started";
-	assertTrue(printout.contains(expectedOutput), "UI did not start correctly.");
-
+	assertTrue(printout.contains("started"), "UI did not start correctly.");
   }
-
 }

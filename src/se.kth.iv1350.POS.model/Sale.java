@@ -45,27 +45,24 @@ public class Sale {
       }
     }
     items.add(createdItem);
-    calculatePrices();
+    updatePrices();
 	SaleInfoDTO saleInformation = new SaleInfoDTO(itemDTO, runningTotal);
 	return saleInformation;
   }
 
-
   /**
    * This function calculates the running total price based on the price of the item scanned and the VAT of that item.
    */
-  public void calculatePrices() {
+  public void updatePrices() {
     this.totalPrice = 0;
     this.totalVAT = 0;
-    for(Item item : items){
+    for(Item item : items) {
       this.totalPrice += item.getPrice();
       this.totalVAT += (item.getVAT() * item.getPrice());
     }
-
-
     this.runningTotal = this.totalPrice + this.totalVAT;
-
   }
+
 
   /**
    * This is the function which completes the sale and accepts payment. It takes in several parameters.
@@ -117,6 +114,7 @@ public class Sale {
   public double getTotalVAT() {
     return this.totalVAT;
   }
+
   /**
    * This is the function which return the running total of the sale.
    * @return

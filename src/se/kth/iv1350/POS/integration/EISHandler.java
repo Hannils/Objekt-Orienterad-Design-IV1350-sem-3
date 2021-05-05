@@ -16,7 +16,6 @@ public class EISHandler {
    * @return
    */
   public ItemDTO findItem(String identifier) {
-
     switch (identifier) {
       case "first":
         itemDTO = new ItemDTO("Ris", 0.25, 15, "Uncle Ben's 1 minute rice");

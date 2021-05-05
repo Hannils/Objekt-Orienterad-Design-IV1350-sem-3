@@ -16,7 +16,6 @@ public class Main {
    * @param args Does not take in any args.
    */
   public static void main(String[] args) {
-
     //All classes from the integration package being created.
 	EISHandler eis = new EISHandler();
 	EASHandler eas = new EASHandler();

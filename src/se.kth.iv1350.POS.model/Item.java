@@ -13,7 +13,6 @@ public class Item {
   private int weight;
   private int quantity;
 
-
   /**
    * This is the constructor for the item class. It takes in several parameters.
    * @param itemDTO This is a parameter which holds information about an item.
@@ -35,6 +34,7 @@ public class Item {
   public String getName() {
     return this.name;
   }
+
   /**
    * This is the function which will return the VAT of the item.
    * @return
@@ -42,6 +42,7 @@ public class Item {
   public double getVAT() {
     return this.VAT;
   }
+
   /**
    * This is the function which will return the price of the item.
    * @return
@@ -49,6 +50,7 @@ public class Item {
   public double getPrice() {
     return this.price;
   }
+
   /**
    * This is the function which will return the description of the item.
    * @return
@@ -56,6 +58,7 @@ public class Item {
   public String getDescription() {
     return this.description;
   }
+
   /**
    * This is the function which will return the weight of the item.
    * @return
@@ -63,6 +66,7 @@ public class Item {
   public int getWeight() {
     return this.weight;
   }
+
   /**
    * This is the function which will return the quantity of the item.
    * @return
@@ -77,7 +81,7 @@ public class Item {
    */
   @Override
   public String toString() {
-    return "("+this.quantity+", "+this.name +", "+ this.getDescription()+
+    return "("+this.quantity+"x, "+this.name +", "+ this.getDescription()+
             ", PRIS:"+this.getPrice()+"kr, MOMS:"+ this.getVAT()*this.getPrice() +"kr)\n";
   }
 }

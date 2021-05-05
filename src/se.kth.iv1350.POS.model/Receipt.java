@@ -45,3 +45,4 @@ public class Receipt {
     return this.storeInformation;
   }
 }
+
