@@ -47,21 +47,21 @@ class SaleTest {
 	assertTrue(printout.contains("Basmati"), "Sale did not add item correctly.");
   }
   @Test
-  public void testIfCalculationOfTotalPriceWorksCorrectly() {
+  public void testIfUpdateOfTotalPriceWorksCorrectly() {
       instanceToTest.addItem(firstItemDTO);
       instanceToTest.addItem(secondItemDTO);
       assertEquals(instanceToTest.getTotalPrice(), 24.9,
               "Calculation of Total Price did not work correctly.");
   }
   @Test
-    public void testIfCalculationOfTotalVATWorksCorrectly() {
+    public void testIfUpdateOfTotalVATWorksCorrectly() {
       instanceToTest.addItem(firstItemDTO);
       instanceToTest.addItem(secondItemDTO);
       assertEquals(instanceToTest.getTotalVAT(), 5.235,
               "Calculation of Total VAT did not work correctly.");
   }
   @Test
-    public void testIfCalculationOfRunningTotalWorksCorrectly() {
+    public void testIfUpdateOfRunningTotalWorksCorrectly() {
       instanceToTest.addItem(firstItemDTO);
       instanceToTest.addItem(secondItemDTO);
       assertEquals(instanceToTest.getRunningTotal(), 30.135, 0.0001,
@@ -81,5 +81,13 @@ class SaleTest {
           assertEquals(itemDTOArrayForTesting[i].getVAT(), instanceToTest.getItems().get(i).getVAT()
                   , "VAT got lost in conversion.");
       }
+  }
+  @Test
+  public void testIfDuplicateItemUpdatesSale() {
+    instanceToTest.addItem(firstItemDTO);
+    instanceToTest.addItem(secondItemDTO);
+    instanceToTest.addItem(firstItemDTO);
+    assertEquals(firstItemDTO.getPrice()*2, instanceToTest.getItems().get(1).getPrice(),
+			"Duplicate was not added to Sale");
   }
 }
