@@ -18,7 +18,7 @@ public class EISHandler {
   public ItemDTO findItem(String identifier) {
     switch (identifier) {
       case "first":
-        itemDTO = new ItemDTO("Ris", 0.25, 15, "Uncle Ben's 1 minute rice");
+        itemDTO = new ItemDTO("Ris", 0.25, 15, "Uncle Ben's Boil-in-Bag");
         return itemDTO;
 
       case "second":

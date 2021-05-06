@@ -14,6 +14,8 @@ public class Printer {
    * @param receipt This is the parameter receipt which contains information.
    */
   public void printReceipt(Receipt receipt, Sale sale) {
+    System.out.println("Printing receipt...");
+    /*
     String storeinformation = receipt.getStoreInformation();
     System.out.println("*****************************************");
     System.out.println(storeinformation);
@@ -24,5 +26,6 @@ public class Printer {
     System.out.println("ATT BETALA        " + sale.getTotalPrice());
     System.out.println("MOMS              " + sale.getTotalVAT());
     System.out.println("*****************************************");
+     */
   }
 }

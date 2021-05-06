@@ -60,12 +60,13 @@ public class Controller {
    */
   public PaymentDTO pay(int amount, String currency) {
     PaymentDTO payment = new PaymentDTO(amount, currency);
-
     Receipt receipt = sale.complete(payment, sale);
     eas.registerPayment(payment, sale);
     eis.updateInventory(sale);
     printer.printReceipt(receipt, sale);
-    return payment;
+    int amountOfChange = (int) (payment.getAmount() - sale.getRunningTotal());
+    PaymentDTO change = new PaymentDTO(amountOfChange, currency);
+    return change;
   }
 
 
