@@ -63,6 +63,7 @@ public class Controller {
     updateExternalsAndPrintReceipt(receipt, payment);
     int amountOfChange = (int) (payment.getAmount() - sale.getRunningTotal());
     PaymentDTO change = new PaymentDTO(amountOfChange, currency);
+    sale = null;
     return change;
   }
 
