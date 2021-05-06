@@ -29,7 +29,7 @@ public class Item {
 
   /**
    * This is the function which will return the name of the item.
-   * @return
+   * @return The name.
    */
   public String getName() {
     return this.name;
@@ -37,7 +37,7 @@ public class Item {
 
   /**
    * This is the function which will return the VAT of the item.
-   * @return
+   * @return The VAT.
    */
   public double getVAT() {
     return this.VAT;
@@ -45,7 +45,7 @@ public class Item {
 
   /**
    * This is the function which will return the price of the item.
-   * @return
+   * @return The price.
    */
   public double getPrice() {
     return this.price;
@@ -53,7 +53,7 @@ public class Item {
 
   /**
    * This is the function which will return the description of the item.
-   * @return
+   * @return The description.
    */
   public String getDescription() {
     return this.description;
@@ -61,7 +61,7 @@ public class Item {
 
   /**
    * This is the function which will return the weight of the item.
-   * @return
+   * @return The weight.
    */
   public int getWeight() {
     return this.weight;
@@ -69,7 +69,7 @@ public class Item {
 
   /**
    * This is the function which will return the quantity of the item.
-   * @return
+   * @return The quantity.
    */
   public int getQuantity() {
     return this.quantity;
@@ -77,7 +77,7 @@ public class Item {
 
   /**
    * This function sets the way the object item is to be printed.
-   * @return
+   * @return The way an item will be printed.
    */
   @Override
   public String toString() {

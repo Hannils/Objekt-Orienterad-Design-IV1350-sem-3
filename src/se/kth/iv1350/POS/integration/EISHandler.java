@@ -13,7 +13,7 @@ public class EISHandler {
    * This is the function which searches for an item with the parameter sent in.
    *
    * @param identifier This is the parameter which identifies the item entered.
-   * @return
+   * @return The itemDTO if identifier is valid or null if invalid.
    */
   public ItemDTO findItem(String identifier) {
     switch (identifier) {

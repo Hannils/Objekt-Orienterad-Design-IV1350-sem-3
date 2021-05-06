@@ -8,7 +8,7 @@ import src.se.kth.iv1350.POS.DTO.PaymentDTO;
 public class Receipt {
   private Sale sale;
   private PaymentDTO payment;
-  private String storeInformation = "ICA KTH KÖKSBANKEN, RUNDA-SLÄNGEN 69 420C4";
+  private String storeInformation = "ICA KTH KÖKSBANKEN, RUNDA-SLÄNGEN 69 420-C4";
 
   /**
    * This is the constructor for the class receipt.
@@ -23,7 +23,7 @@ public class Receipt {
 
   /**
    * This is the function which returns the current sale from the receipt.
-   * @return
+   * @return The sale.
    */
   public Sale getSale() {
     return this.sale;
@@ -31,7 +31,7 @@ public class Receipt {
 
   /**
    * This is the function which returns the payment from the receipt as an PaymentDTO.
-   * @return
+   * @return The payment.
    */
   public PaymentDTO getPayment() {
     return this.payment;
@@ -39,7 +39,7 @@ public class Receipt {
 
   /**
    * This is the function which returns the stores information from the receipt.
-   * @return
+   * @return The storeInformation.
    */
   public String getStoreInformation() {
     return this.storeInformation;

@@ -15,17 +15,5 @@ public class Printer {
    */
   public void printReceipt(Receipt receipt, Sale sale) {
     System.out.println("Printing receipt...");
-    /*
-    String storeinformation = receipt.getStoreInformation();
-    System.out.println("*****************************************");
-    System.out.println(storeinformation);
-    System.out.println(sale.getSaleTime() + "               " + sale.getDate()+"\n");
-    for(Item item : sale.getItems())
-      System.out.println(item.toString());
-    sale.updatePrices();
-    System.out.println("ATT BETALA        " + sale.getTotalPrice());
-    System.out.println("MOMS              " + sale.getTotalVAT());
-    System.out.println("*****************************************");
-     */
   }
 }

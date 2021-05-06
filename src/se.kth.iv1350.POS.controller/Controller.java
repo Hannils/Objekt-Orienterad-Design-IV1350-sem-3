@@ -29,7 +29,6 @@ public class Controller {
 	this.eas = eas;
     this.printer = printer;
 
-    //For testing purposes
     System.out.println("Controller started successfully");
   }
 
@@ -43,7 +42,7 @@ public class Controller {
   /**
    * This is the function which will enter an item to the current sale. It takes in one parameter.
    * @param identifier This is the parameter which identifies the item entered.
-   * @return
+   * @return The saleInformation.
    */
   public SaleInfoDTO enterItem(String identifier) {
     ItemDTO itemDTO = eis.findItem(identifier);
@@ -56,7 +55,7 @@ public class Controller {
    * This is the function in which payment will be recieved and sale will be completed.
    * @param amount This is the parameter which specifies the amount of currency taken in.
    * @param currency This is the parameter which specifies which currency has been accepted.
-   * @return
+   * @return The result of the subtraction.
    */
   public PaymentDTO pay(int amount, String currency) {
     PaymentDTO payment = new PaymentDTO(amount, currency);

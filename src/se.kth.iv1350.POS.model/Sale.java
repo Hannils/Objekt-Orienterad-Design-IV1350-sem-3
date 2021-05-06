@@ -34,7 +34,7 @@ public class Sale {
    * This function creates a new item and adds its price to the running total then proceeds to create a
    * Sale Information Data Transfer Object and returns it.
    * @param itemDTO
-   * @return
+   * @return The saleinformation from the newly added item.
    */
   public SaleInfoDTO addItem(ItemDTO itemDTO) {
     Item createdItem = new Item(itemDTO, 1);
@@ -68,7 +68,7 @@ public class Sale {
    * This is the function which completes the sale and accepts payment. It takes in several parameters.
    * @param payment This is the parameter which takes in the payment recieved.
    * @param sale This is the parameter which takes in the current sale.
-   * @return
+   * @return The receipt.
    */
   public Receipt complete(PaymentDTO payment, Sale sale) {
     Receipt receipt = new Receipt(sale, payment);
@@ -77,7 +77,7 @@ public class Sale {
 
   /**
    * This is the function which return the time of the sale.
-   * @return
+   * @return The time in hours, minutes and seconds.
    */
   public String getSaleTime() {
     return this.saleTime.getHour()+":"+this.saleTime.getMinute()+":"+this.saleTime.getSecond();
@@ -85,7 +85,7 @@ public class Sale {
 
   /**
    * This function returns the date of the sale.
-   * @return
+   * @return The date.
    */
   public LocalDate getDate() {
     return this.date;
@@ -93,7 +93,7 @@ public class Sale {
 
   /**
    * This is the function which returns the items of the sale.
-   * @return
+   * @return The items.
    */
   public ArrayList<Item> getItems() {
     return this.items;
@@ -101,7 +101,7 @@ public class Sale {
 
   /**
    * This is the function which returns the total price of the sale.
-   * @return
+   * @return The total price.
    */
   public double getTotalPrice() {
     return this.totalPrice;
@@ -109,7 +109,7 @@ public class Sale {
 
   /**
    * This is the function which returns the total VAT of the sale.
-   * @return
+   * @return The total VAT.
    */
   public double getTotalVAT() {
     return this.totalVAT;
@@ -117,7 +117,7 @@ public class Sale {
 
   /**
    * This is the function which return the running total of the sale.
-   * @return
+   * @return The running total
    */
   public double getRunningTotal() {
     return this.runningTotal;

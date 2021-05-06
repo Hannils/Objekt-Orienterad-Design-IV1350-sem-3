@@ -19,7 +19,7 @@ public class PaymentDTO {
 
   /**
    * This is the function which returns the amount used in the payment.
-   * @return
+   * @return The amount.
    */
   public double getAmount() {
     return this.amount;
@@ -27,12 +27,16 @@ public class PaymentDTO {
 
   /**
    * This is the function which returns the currency used in the payment.
-   * @return
+   * @return The currency.
    */
   public String getCurrency() {
     return this.currency;
   }
 
+  /**
+   * This is the function which expressed how PaymentDTO will be printed.
+   * @return The way a PaymentDTO will be printed.
+   */
   @Override
   public String toString() {
     return this.amount + " " + this.currency;
